@@ -17,6 +17,7 @@ int main(void) {
 	 * array of 256 uint64_t, indexed by uint8_t, left = 0, right = 1
 	 * uint8_t structure is ABCDEFGH, A-G are previous presses, H is press to predict
 	 */
+	uint8_t prev = 0;
 	uint64_t *seq = calloc(256, sizeof(uint64_t));
 	if (seq == NULL) {
 		fputs("memory allocation failed\n", stderr);
@@ -24,6 +25,17 @@ int main(void) {
 	}
 	printw("press left or right arrow key to be predicted, or press Q to quit\n");
 	while (1) {
+		prev <<= 1;
+		printw(
+			"prev: %c%c%c%c%c%c%c\n",
+			(prev & UINT8_C(128)) ? '<' : '>',
+			(prev & UINT8_C(64)) ? '<' : '>',
+			(prev & UINT8_C(32)) ? '<' : '>',
+			(prev & UINT8_C(16)) ? '<' : '>',
+			(prev & UINT8_C(8)) ? '<' : '>',
+			(prev & UINT8_C(4)) ? '<' : '>',
+			(prev & UINT8_C(2)) ? '<' : '>'
+		);
 		c = getch();
 		switch (c) {
 			case KEY_LEFT:
@@ -31,6 +43,7 @@ int main(void) {
 				break;
 			case KEY_RIGHT:
 				printw("you pressed right arrow\n");
+				prev |= UINT8_C(1);
 				break;
 			case 'q':
 				cleanup();
