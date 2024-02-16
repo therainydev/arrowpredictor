@@ -1,6 +1,12 @@
 #include <curses.h>
 #include <inttypes.h>
+#include <signal.h>
 #include <stdlib.h>
+
+void cleanup(void) {
+	endwin();
+	_Exit(0);
+}
 
 int main(void) {
 	initscr();
@@ -25,7 +31,9 @@ int main(void) {
 			case KEY_RIGHT:
 				printw("you pressed right arrow\n");
 				break;
+			case 'q':
+				cleanup();
 		}
 	}
-	return 0;
+	cleanup();
 }
