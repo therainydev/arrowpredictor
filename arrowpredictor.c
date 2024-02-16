@@ -23,7 +23,8 @@ int main(void) {
 		return 1;
 	}
 	printw("press left or right arrow key to be predicted, or press Q to quit\n");
-	while ((c = getch()) != 'q') {
+	while (1) {
+		c = getch();
 		switch (c) {
 			case KEY_LEFT:
 				printw("you pressed left arrow\n");
@@ -35,5 +36,4 @@ int main(void) {
 				cleanup();
 		}
 	}
-	cleanup();
 }
