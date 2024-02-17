@@ -29,16 +29,21 @@ int main(void) {
 	while (1) {
 		prev <<= 1;
 		printw(
-			"prev: %c%c%c%c%c%c%c\n",
+			"prev: %c%c%c%c%c%c%c\n"
+			"before: %"PRIu64" <\n"
+			"        %"PRIu64" >\n",
 			(prev & UINT8_C(128)) ? '<' : '>',
 			(prev & UINT8_C( 64)) ? '<' : '>',
 			(prev & UINT8_C( 32)) ? '<' : '>',
 			(prev & UINT8_C( 16)) ? '<' : '>',
 			(prev & UINT8_C(  8)) ? '<' : '>',
 			(prev & UINT8_C(  4)) ? '<' : '>',
-			(prev & UINT8_C(  2)) ? '<' : '>'
+			(prev & UINT8_C(  2)) ? '<' : '>',
+			seq[prev],
+			seq[prev|UINT8_C(1)]
 		);
 		c = getch();
+		clear();
 		switch (c) {
 			case KEY_LEFT:
 				printw("you pressed left arrow\n");
@@ -50,5 +55,6 @@ int main(void) {
 			case 'q':
 				cleanup(0);
 		}
+		seq[prev]++;
 	}
 }
