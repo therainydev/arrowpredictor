@@ -62,6 +62,7 @@ int main(void) {
 				if (seq[prev] > seq[prev|UINT8_C(1)]) {
 					p++;
 				}
+				seq[prev]++; t++;
 				break;
 			case KEY_RIGHT:
 				printw("You pressed the right arrow.\n");
@@ -69,11 +70,10 @@ int main(void) {
 					p++;
 				}
 				prev |= UINT8_C(1);
+				seq[prev]++; t++;
 				break;
 			case 'q':
 				cleanup(0);
 		}
-		seq[prev]++;
-		t++;
 	}
 }
