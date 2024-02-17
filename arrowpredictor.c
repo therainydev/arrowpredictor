@@ -32,13 +32,13 @@ int main(void) {
 			"prev: %c%c%c%c%c%c%c\n"
 			"before: %"PRIu64" <\n"
 			"        %"PRIu64" >\n",
-			(prev & UINT8_C(128)) ? '<' : '>',
-			(prev & UINT8_C( 64)) ? '<' : '>',
-			(prev & UINT8_C( 32)) ? '<' : '>',
-			(prev & UINT8_C( 16)) ? '<' : '>',
-			(prev & UINT8_C(  8)) ? '<' : '>',
-			(prev & UINT8_C(  4)) ? '<' : '>',
-			(prev & UINT8_C(  2)) ? '<' : '>',
+			(prev & UINT8_C(128)) ? '>' : '<',
+			(prev & UINT8_C( 64)) ? '>' : '<',
+			(prev & UINT8_C( 32)) ? '>' : '<',
+			(prev & UINT8_C( 16)) ? '>' : '<',
+			(prev & UINT8_C(  8)) ? '>' : '<',
+			(prev & UINT8_C(  4)) ? '>' : '<',
+			(prev & UINT8_C(  2)) ? '>' : '<',
 			seq[prev],
 			seq[prev|UINT8_C(1)]
 		);
