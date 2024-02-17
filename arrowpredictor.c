@@ -3,12 +3,14 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void cleanup(void) {
+static void cleanup(int sn) {
 	endwin();
 	_Exit(0);
 }
 
 int main(void) {
+	signal(SIGINT, cleanup);
+	signal(SIGTERM, cleanup);
 	initscr();
 	keypad(stdscr, TRUE);
 	noecho();
@@ -46,7 +48,7 @@ int main(void) {
 				prev |= UINT8_C(1);
 				break;
 			case 'q':
-				cleanup();
+				cleanup(0);
 		}
 	}
 }
