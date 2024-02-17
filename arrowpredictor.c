@@ -23,19 +23,25 @@ int main(void) {
 		return 1;
 	}
 	printw(
-		"press left or right arrow key to be predicted, or press Q to quit\n"
+		"Welcome to the arrow predictor, also known as an Aaronson Oracle!\n"
+		"To begin, start pressing the left and right arrow keys.\n"
+		"For most people, this program will correctly predict their presses about 70%% of the time.\n"
+		"Good luck being random!\n"
+		"If you're tired of this program, you can press Q or CTRL+C to quit it.\n"
 	);
 	while (1) {
 		prev <<= 1;
 		printw(
-			"total: %"PRIu64" presses\n"
-			"correctly predicted: %"PRIu64" presses\n"
-			"prev: %c%c%c%c%c%c%c\n"
-			"before: %"PRIu64" <\n"
-			"        %"PRIu64" >\n"
-			"predicted: %c\n",
+			"You have pressed %"PRIu64" arrow keys, of which %"PRIu64" presses were correctly predicted.\n"
+			"So far, the predictions have been %2.1lf%% accurate.\n"
+			"The last 7 keys you pressed were %c%c%c%c%c%c%c.\n"
+			"You have been in this situation %"PRIu64" times before, and you pressed...\n"
+			" - the left  arrow %"PRIu64" times.\n"
+			" - the right arrow %"PRIu64" times.\n"
+			"You are predicted to press the %s arrow.\n",
 			t,
 			p,
+			((double)p / (double)t) * 100,
 			(prev & UINT8_C(128)) ? '>' : '<',
 			(prev & UINT8_C( 64)) ? '>' : '<',
 			(prev & UINT8_C( 32)) ? '>' : '<',
@@ -43,21 +49,22 @@ int main(void) {
 			(prev & UINT8_C(  8)) ? '>' : '<',
 			(prev & UINT8_C(  4)) ? '>' : '<',
 			(prev & UINT8_C(  2)) ? '>' : '<',
+			seq[prev] + seq[prev|UINT8_C(1)],
 			seq[prev],
 			seq[prev|UINT8_C(1)],
-			(seq[prev] > seq[prev|UINT8_C(1)]) ? '<': '>'
+			(seq[prev] > seq[prev|UINT8_C(1)]) ? "left" : "right"
 		);
 		c = getch();
 		clear();
 		switch (c) {
 			case KEY_LEFT:
-				printw("you pressed left arrow\n");
+				printw("You pressed the left arrow.\n");
 				if (seq[prev] > seq[prev|UINT8_C(1)]) {
 					p++;
 				}
 				break;
 			case KEY_RIGHT:
-				printw("you pressed right arrow\n");
+				printw("You pressed the right arrow.\n");
 				if (seq[prev] <= seq[prev|UINT8_C(1)]) {
 					p++;
 				}
