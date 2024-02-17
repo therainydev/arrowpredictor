@@ -16,10 +16,6 @@ int main(void) {
 	noecho();
 	int c;
 	uint64_t t = 0, p = 0;
-	/* data structure:
-	 * array of 256 uint64_t, indexed by uint8_t, left = 0, right = 1
-	 * uint8_t structure is ABCDEFGH, A-G are previous presses, H is press to predict
-	 */
 	uint8_t prev = 0;
 	uint64_t *seq = calloc(256, sizeof(uint64_t));
 	if (seq == NULL) {
