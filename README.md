@@ -4,10 +4,10 @@ This is a simple C program that predicts what arrow key you'll press next using 
 the core of the TokiLM-p language model.
 
 ## Compiling
-Simple:
 ```sh
-cc arrowpredictor.c -o arrowpredictor
+cc -lncurses arrowpredictor.c -o arrowpredictor
 ```
+Requires `ncurses` (for the TUI).
 
 ## Usage
 Run the program without any arguments. It'll throw away any arguments you give to it, anyways. You'll be presented a
