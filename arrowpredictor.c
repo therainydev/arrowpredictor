@@ -29,12 +29,12 @@ int main(void) {
 		printw(
 			"prev: %c%c%c%c%c%c%c\n",
 			(prev & UINT8_C(128)) ? '<' : '>',
-			(prev & UINT8_C(64)) ? '<' : '>',
-			(prev & UINT8_C(32)) ? '<' : '>',
-			(prev & UINT8_C(16)) ? '<' : '>',
-			(prev & UINT8_C(8)) ? '<' : '>',
-			(prev & UINT8_C(4)) ? '<' : '>',
-			(prev & UINT8_C(2)) ? '<' : '>'
+			(prev & UINT8_C( 64)) ? '<' : '>',
+			(prev & UINT8_C( 32)) ? '<' : '>',
+			(prev & UINT8_C( 16)) ? '<' : '>',
+			(prev & UINT8_C(  8)) ? '<' : '>',
+			(prev & UINT8_C(  4)) ? '<' : '>',
+			(prev & UINT8_C(  2)) ? '<' : '>'
 		);
 		c = getch();
 		switch (c) {
