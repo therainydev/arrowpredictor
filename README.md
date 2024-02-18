@@ -1,7 +1,7 @@
 # Arrow predictor
 
-This is a simple C program that predicts what arrow key you'll press next using a probabilistic model. It's similar to
-the core of the TokiLM-p language model.
+This is a simple C program that predicts what arrow key you'll press next using a neural network. It's similar to the
+core of the TokiLM-n language model.
 
 ## Compiling
 ```sh
