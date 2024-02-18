@@ -26,16 +26,14 @@ int main(void) {
 		"Welcome to the arrow predictor, also known as an Aaronson Oracle!\n"
 		"To begin, start pressing the left and right arrow keys.\n"
 		"For most people, this program will correctly predict their presses about 70%% of the time.\n"
-		"Good luck being random!\n"
 		"If you're tired of this program, you can press Q or CTRL+C to quit it.\n"
 	);
 	while (1) {
 		prev <<= 1;
 		printw(
-			"You have pressed %"PRIu64" arrow keys, of which %"PRIu64" presses were correctly predicted.\n"
-			"So far, the predictions have been %2.1lf%% accurate.\n"
+			"You have pressed %"PRIu64" arrow keys, of which %"PRIu64" presses were correctly predicted, for an accuracy of %2.1lf%%.\n"
 			"The last 7 keys you pressed were %c%c%c%c%c%c%c.\n"
-			"You have been in this situation %"PRIu64" times before, and you pressed...\n"
+			"You have been in this situation %"PRIu64" times before, and you pressed:\n"
 			" - the left  arrow %"PRIu64" times.\n"
 			" - the right arrow %"PRIu64" times.\n"
 			"You are predicted to press the %s arrow.\n",
