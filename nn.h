@@ -4,7 +4,7 @@
 struct neuron {
 	size_t num_ins;
 	struct neuron *ins;
-	float *in_weights;
+	float *weights;
 	float out;
 };
 
