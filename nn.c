@@ -15,6 +15,16 @@ void evaluate(struct neuron *neuron) {
 	neuron->out = sigmoid(rt);
 }
 
+struct neuron *allocate_layer(size_t size, struct neuron *in_size) {
+	struct neuron *layer = (struct neuron *) malloc(size * sizeof(struct neuron));
+	for (size_t i=0; i<size; i++) {
+		layer[i].weights[j] = (float *) malloc(in_size * sizeof(float));
+		for (size_t j=0; j<in_size; j++) {
+			layer[i].weights[j] = 1.0f;
+		}
+	}
+	return layer;
+}
 
 void free_layer(struct neuron *layer, size_t size) {
 	for (size_t i=0; i<size; i++) {
