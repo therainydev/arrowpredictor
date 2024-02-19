@@ -1,5 +1,7 @@
 # Arrow predictor
 
+**Note: Implementation of a neural network is ongoing in the `net` branch.**
+
 This is a simple C program that predicts what arrow key you'll press next using a probabilistic model. It's similar to
 the core of the TokiLM-p language model.
 
