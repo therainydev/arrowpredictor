@@ -2,8 +2,6 @@
 #define ARROW_NN_H
 
 struct neuron {
-	size_t num_ins;
-	struct neuron *ins;
 	float *weights;
 	float out;
 };
