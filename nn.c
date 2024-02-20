@@ -33,3 +33,6 @@ void free_layer(struct neuron *layer, size_t size) {
 	}
 	free(layer);
 }
+
+// evaluate_net() returning float from nn.h
+// update_net() returning void from nn.h
