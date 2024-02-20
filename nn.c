@@ -7,10 +7,10 @@ float sigmoid(float x) {
 	return 1 / (1+expf(x))
 }
 
-void evaluate(struct neuron *neuron) {
+void evaluate(struct neuron *neuron, struct neuron *in_layer, size_t in_size) {
 	float rt = neuron->bias;
-	for (size_t i=0; i<neuron->num_ins; i++) {
-		rt += neuron->num_ins[i].out * neuron->weights[i];
+	for (size_t i=0; i<in_size; i++) {
+		rt += in_layer[i].out * neuron->weights[i];
 	}
 	neuron->out = sigmoid(rt);
 }
