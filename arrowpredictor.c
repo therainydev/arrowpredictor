@@ -2,13 +2,48 @@
 #include <inttypes.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void cleanup(int sn) {
 	endwin();
 	_Exit(0);
 }
 
-int main(void) {
+void usage(FILE *fp, char *name) {
+	fprintf(
+		fp,
+		"Arrow Predictor: predict what arrow key will be pressed next in a sequence of left and right arrows.\n"
+		"Usage: %s [ -h | -n ]\n"
+		"Options:\n"
+		"  -h\n"
+		"    Print this message.\n"
+		"  -n\n"
+		"    Use a neural network instead of the default probabilistic model.\n"
+		"    Implementation a neural network is incomplete.\n",
+		name
+	);
+}
+
+int main(int argc, char **argv) {
+	if (argv[0] == NULL) {
+		fputs("argv[0] is NULL, something's wrong\n", stderr);
+	}
+	if (argc > 2) {
+		usage(stderr, argv[0]);
+		return 1;
+	}
+	if (argc == 2) {
+		if (!strcmp(argv[1], "-h")) {
+			usage(stdout, argv[0]);
+			return 0;
+		} else if (!strcmp(argv[1], "-n")) {
+			puts("Neural network implementation is not yet available.");
+			return 1;
+		} else {
+			usage(stderr, argv[0]);
+			return 1;
+		}
+	}
 	signal(SIGINT, cleanup);
 	signal(SIGTERM, cleanup);
 	initscr();
