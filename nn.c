@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 float sigmoid(float x) {
-	return 1 / (1+expf(x))
+	return 1 / (1+expf(x));
 }
 
 void evaluate(struct neuron *neuron, struct neuron *in_layer, size_t in_size) {
