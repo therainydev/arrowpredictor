@@ -4,6 +4,29 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct neural_net {
+	size_t  num_layers;
+	size_t *sizes;
+	float **biases;
+	float **weights;
+}
+
+struct neural_net alloc_neural_net(size_t num_layers, size_t *sizes) {
+	struct neural_net *net = (net *) malloc(sizeof(net));
+	net->num_layers = num_layers;
+	net->sizes      = sizes;
+	net->biases     = (float **) malloc(num_layers);
+	net->weights    = (float **) malloc(num_layers);
+	return net;
+}
+
+float sigmoid(float x) {
+	return 1f/(1f+expf(-x))
+}
+
+// may want to add free_neural_net() later
+// we don't need it now because used memory is taken back by the OS on exit
+
 static void cleanup(int sn) {
 	endwin();
 	_Exit(0);
@@ -18,7 +41,7 @@ void usage(FILE *fp, char *name) {
 		"  -h\n"
 		"    Print this message.\n"
 		"  -n\n"
-		"    Use a neural network instead of the default probabilistic model.\n"
+		"    Use a neural network alongside the default probabilistic model.\n"
 		"    Implementation a neural network is incomplete.\n",
 		name
 	);
